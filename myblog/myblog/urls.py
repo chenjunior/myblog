@@ -15,14 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-from django.urls import path,re_path
+# from django.urls import
 from django.views.static import serve
 from django.conf import settings
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^', include('blog.urls')),
+    url(r'^admin/', admin.site.urls),
     # url(r'^tinymce/', include('tinymce.urls')),
     url(r'ueditor/', include('DjangoUeditor.urls')),  # 添加DjangoUeditor的URL
-    re_path('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  # 增加此行图片就会正常显示。
+    url('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  # 增加此行图片就会正常显示。
+    url(r'^', include('blog.urls')),
 ]

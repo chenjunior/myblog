@@ -1,6 +1,5 @@
 {% load staticfiles %}
 <!--告诉模板引擎，我们要加载引入静态资源。-->
-<!DOCTYPE HTML>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -32,23 +31,10 @@
 
                 <li id="menu-item-24086" class="menu-item"><a href="/">首页</a></li>
 
-                <li id="menu-item-117720" class="menu-item">
-                    <a href="/list-1.html">Django</a></li>
-
-                <li id="menu-item-117720" class="menu-item">
-                    <a href="/list-2.html">Python</a></li>
-
-                <li id="menu-item-117720" class="menu-item">
-                    <a href="/list-3.html">Linux</a></li>
-
-                <li id="menu-item-117720" class="menu-item">
-                    <a href="/list-4.html">Mysql</a></li>
-
-                <li id="menu-item-117720" class="menu-item">
-                    <a href="/list-5.html">运维知识</a></li>
-
-                <li id="menu-item-117720" class="menu-item">
-                    <a href="/list-6.html">我的日记</a></li>
+                {% for cate in category %}
+                    <li id="menu-item-117720" class="menu-item">
+                        <a href="list-{{ cate.id }}.html">{{ cate.name }}</a></li>
+                {% endfor %}
 
                 <li id="menu-item-24086" class="menu-item"><a href="/about/">关于博主</a></li>
 

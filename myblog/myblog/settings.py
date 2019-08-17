@@ -132,12 +132,13 @@ STATICFILES_DIRS = [
 ]
 
 # 设置文件上传路径,图片上传,文件上传都会存放在此目录里
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-# 富文本编辑器
-TINYMCE_DEFAULT_CONFIG = {
-    'theme': 'advanced',
-    'width': 600,
-    'height': 400,
-}
+
+# # 富文本编辑器
+# # TINYMCE_DEFAULT_CONFIG = {
+# #     'theme': 'advanced',
+# #     'width': 600,
+# #     'height': 400,
+# # }
