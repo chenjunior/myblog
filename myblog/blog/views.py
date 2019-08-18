@@ -8,6 +8,7 @@ from .models import Category, Banner, Tui, Tag, Article, Link
 # Create your views here.
 
 
+# 首页
 def index(request):
     # 查出所有的分类
     category = Category.objects.all()
@@ -42,6 +43,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+# 列表页
 def list(request, lid):
     print('*'*100)
     # lid代表的是当前文章的id
@@ -86,9 +88,38 @@ def list(request, lid):
     return render(request, 'list.html', context)
 
 
+# 详情页
 def show(request, sid):
-    print('*' * 100)
-    pass
+    article = Article.objects.get(id=sid)
+    category = Category.objects.all()
+    tags = Tag.objects.all()
+    # 热门推荐id为3,并截取前6个
+    remen = Article.objects.filter(tui__id=3)[0:6]
+    # 内容下面的您可能感兴趣的文章，随机推荐
+    hot = Article.objects.all().order_by('?')[0:10]
+    # 上一篇文章,文章创建时间小的就是上一篇
+    previous_blog = Article.objects.filter(
+        created_time__gt=article.created_time,
+        category=article.category.id
+    ).first()
+    # 下一篇文章,文章创建时间小的就是下一篇
+    next_blog = Article.objects.filter(
+        created_time__lt=article.created_time,
+        category=article.category.id
+    ).last()
+    article.views = article.views + 1
+    article.save()
+    context = {
+        'article': article,
+        'category': category,
+        'tags': tags,
+        'remen': remen,
+        'hot': hot,
+        'previous_blog': previous_blog,
+        'next_blog': next_blog,
+    }
+
+    return render(request, 'show.html', context)
 
 
 def tags(request):
