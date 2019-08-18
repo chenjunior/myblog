@@ -16,7 +16,7 @@
                                     <span class="text ani-left"><strong>{{ b.text_info }}</strong></span>
                                 </li>
                             {% endfor %}
-
+                        </ul>
                     </div>
 
                 </div>
@@ -28,7 +28,7 @@
                         <div class="title">推荐阅读</div>
                         {% for t in tui %}
                             <div class="caption">
-                                <h4><a href="show-{{ t.id }}.html" title="{{ t.title }}"
+                                <h4><a href="{% url 'index' %}show-{{ t.id }}.html" title="{{ t.title }}"
                                        rel="bookmark">{{ t.title }}</a></h4>
                                 <p>{{ t.excerpt|truncatechars:"80" }}</p>
                             </div>

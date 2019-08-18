@@ -9,13 +9,13 @@
             <li>
                 <div class="img">
 
-                    <a href="/show-{{ rem.id }}}.html"
-                       title="{{ rem.title }}"><img src="media/{{ rem.img }}" srcset="media/{{ rem.img }}"
+                    <a href="{% url 'index' %}show-{{ rem.id }}}.html"
+                       title="{{ rem.title }}"><img src="{% url 'index' %}media/{{ rem.img }}" srcset="{% url 'index' %}media/{{ rem.img }}"
                             alt="{{ rem.title }}" class="wp-post-image" width="120"
                             height="80"/></a>
 
                 </div>
-                <a href="/show-{{ rem.id }}}.html" title="{{ rem.title }}"
+                <a href="{% url 'index' %}show-{{ rem.id }}}.html" title="{{ rem.title }}"
                    target="_blank" class="title">{{ rem.title }}</a>
             </li>
             {% endfor %}

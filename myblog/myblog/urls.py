@@ -26,4 +26,6 @@ urlpatterns = [
     url(r'ueditor/', include('DjangoUeditor.urls')),  # 添加DjangoUeditor的URL
     url('^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  # 增加此行图片就会正常显示。
     url(r'^', include('blog.urls')),
+
 ]
+

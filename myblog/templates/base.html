@@ -33,12 +33,10 @@
 
                 {% for cate in category %}
                     <li id="menu-item-117720" class="menu-item">
-                        <a href="list-{{ cate.id }}.html">{{ cate.name }}</a></li>
+                        <a href="{% url 'index' %}list-{{ cate.id }}.html/">{{ cate.name }}</a></li>
                 {% endfor %}
 
                 <li id="menu-item-24086" class="menu-item"><a href="/about/">关于博主</a></li>
-
-
             </ul>
         </nav>
         <form method="get" class="index-search  hidden-xs" action="/s/">

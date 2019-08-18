@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+# 导入django自带的分页工具
 
 from .models import Category, Banner, Tui, Tag, Article, Link
 
@@ -40,19 +42,52 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def news(request):
-    pass
+def list(request, lid):
+    print('*'*100)
+    # lid代表的是当前文章的id
+    # 获取对应的文章
+    article = Article.objects.filter(category_id=lid).order_by('-created_time')
+    # 获取当前文章的分类名字
+    c_name = Category.objects.get(id=lid)
+    print(c_name)
+    # 获取右侧热门推荐
+    remen = Article.objects.filter(tui__id=2)[0:6]
+    # 获取所有的分类
+    category = Category.objects.all()
+    tags = Tag.objects.all()
+
+    # 在url中获取当前分页的页数
+    page = request.GET.get('page')
+    # 对查询到的数据对象list进行分页，设置超过5条数据就分页
+    paginator = Paginator(article, 5)
+    link = Link.objects.all()
+    # print(link)
+    try:
+        # 获取当前页码的记录
+        list = paginator.page(page)
+    except PageNotAnInteger:
+        # 如果用户输入的页码不是整数时,显示第1页的内容
+        list = paginator.page(1)
+    except EmptyPage:
+        # 如果用户输入的页数不在系统的页码列表中时,显示最后一页的内容
+        list = paginator.page(paginator.num_pages)
+
+    context = {
+        'article': article,
+        'c_name': c_name,
+        'remen': remen,
+        'category': category,
+        'tags': tags,
+        'list': list,
+        'link': link
+    }
+    # print(context)
+
+    return render(request, 'list.html', context)
 
 
-def bbs(request):
-    pass
-
-
-def list(request):
-    pass
-
-
-def show(request):
+def show(request, sid):
+    print('*' * 100)
     pass
 
 
@@ -65,5 +100,6 @@ def search(request):
 
 
 def about(request):
+    print('*' * 100)
     pass
 
