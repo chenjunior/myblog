@@ -9,13 +9,13 @@
             <li>
                 <div class="img">
 
-                    <a href="{% url 'index' %}show-{{ rem.id }}}.html"
+                    <a href="{% url 'index' %}show-{{ rem.id }}.html/"
                        title="{{ rem.title }}"><img src="{% url 'index' %}media/{{ rem.img }}" srcset="{% url 'index' %}media/{{ rem.img }}"
                             alt="{{ rem.title }}" class="wp-post-image" width="120"
                             height="80"/></a>
 
                 </div>
-                <a href="{% url 'index' %}show-{{ rem.id }}}.html" title="{{ rem.title }}"
+                <a href="{% url 'index' %}show-{{ rem.id }}}.html/" title="{{ rem.title }}"
                    target="_blank" class="title">{{ rem.title }}</a>
             </li>
             {% endfor %}
@@ -37,13 +37,13 @@
     <div class="post-right-item">
         <h4 class="post-right-title">关注我们</h4>
         <div class="wid-about">
-            <p>拓普Python学院，欢迎关注！</p>
+            <p>Python-chen-junior，欢迎关注！</p>
             <img src="{% static 'picture/weixinqr.jpg' %}" alt="微信二维码" width="160" height="160">
         </div>
         <div class="wid-about">
             <p><strong>联系方式:</strong></p>
-            <p>QQ:445813</p>
-            <p>Email：445813@qq.com</p>
+            <p>微信:cjw666520</p>
+            <p>Email：chen_junior.com</p>
         </div>
     </div>
 

@@ -30,12 +30,16 @@
                             {% if previous_blog %}
                             <!--pk属性是django用户模块带有的属性-->
                             <a href="{% url 'index' %}show-{{ previous_blog.pk }}.html" class="article-tag">{{ previous_blog }}</a>
+                            {% else %}
+                            <p  class="article-tag">没有了</p>
                             {% endif %}
                     </div>
                     <div><b>下一篇：</b>
                             {% if next_blog %}
                             <!--pk属性是django用户模块带有的属性-->
                             <a href="{% url 'index' %}show-{{ next_blog.pk }}.html" class="article-tag">{{ next_blog }}</a>
+                            {% else %}
+                            <p class="article-tag">没有了</p>
                             {% endif %}
                     </div>
                 </div>
